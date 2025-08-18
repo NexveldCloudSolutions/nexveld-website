@@ -9,32 +9,50 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 210 15% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 210 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 210 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 210 100% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 210 100% 45%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 210 15% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 210 15% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 40% 94%;
+    --accent-foreground: 210 15% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 210 100% 35%;
+
+    /* Nexveld Brand Colors */
+    --nexveld-blue: 210 100% 35%;
+    --nexveld-blue-light: 210 100% 45%;
+    --nexveld-blue-dark: 210 100% 25%;
+    --nexveld-gray: 210 15% 55%;
+    --nexveld-gray-light: 210 15% 95%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--nexveld-blue)), hsl(var(--nexveld-blue-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--nexveld-blue)) 0%, hsl(var(--nexveld-blue-light)) 100%);
+    --gradient-section: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--nexveld-gray-light)) 100%);
+
+    /* Shadows */
+    --shadow-elevation: 0 10px 30px -10px hsl(var(--nexveld-blue) / 0.3);
+    --shadow-card: 0 4px 20px -4px hsl(var(--nexveld-blue) / 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--nexveld-blue-light) / 0.4);
 
     --radius: 0.5rem;
 
@@ -100,6 +118,83 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground scroll-smooth;
+  }
+}
+
+@layer components {
+  /* Custom gradients */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .bg-gradient-section {
+    background: var(--gradient-section);
+  }
+
+  /* Custom shadows */
+  .shadow-elevation {
+    box-shadow: var(--shadow-elevation);
+  }
+  
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Parallax base */
+  .parallax-container {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 1px;
+  }
+  
+  .parallax-element {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .parallax-back {
+    transform: translateZ(-1px) scale(2);
+  }
+  
+  .parallax-base {
+    transform: translateZ(0);
+  }
+
+  /* Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
